@@ -18,6 +18,7 @@ public class Main_Jfx_01_02  extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/fxmlDocument.fxml"));
         Scene scene= new Scene(root);
         stage.setScene(scene);
+        stage.setTitle("Notatnik");
         stage.show();
 
     }
