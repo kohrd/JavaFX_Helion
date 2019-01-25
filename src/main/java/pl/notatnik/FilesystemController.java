@@ -25,6 +25,7 @@ public class FilesystemController {
 
 
     static Stream<String> openFile(File file) throws IOException {
+        // ok
         f = file;
         return Files.readAllLines(f.toPath()).stream();
     }
@@ -32,28 +33,22 @@ public class FilesystemController {
     static void closeFile() {
         boolean isThere = false;
         for (Path p : RECENTS) {
-            if (p.toFile().getAbsolutePath().equals(f.getAbsolutePath()) {
+            if (p.toFile().getAbsolutePath().equals(f.getAbsolutePath())) {
                 isThere = true;
                 break;
             }
-
         }
-
         if (!isThere) {
             RECENTS.add(f.toPath());
         }
-
-        saverecentsToFile();
+        saveRecentsToFile();
     }
 
     static void saveFile(Iterable<CharSequence> i, String charset) throws IOException {
         if (f != null) {
             Charset c = getCharset(charset != null ? charset : "UTF-8");
             Files.write(f.toPath(), i, c, StandardOpenOption.TRUNCATE_EXISTING);
-
-
         }
-
     }
 
 
@@ -64,17 +59,14 @@ public class FilesystemController {
             p.loadFromXML(in);
             p.forEach((x, y) -> {
                 RECENTS.add(Paths.get(y.toString()));
-
-
             });
-
         }
         return RECENTS;
 
 
     }
 
-    private static void saverecentsToFile() {
+    private static void saveRecentsToFile() {
         RECENTS.forEach(recentPath -> {
             p.setProperty(recentPath.getFileName().toString(), recentPath.toFile().getAbsolutePath());
 
@@ -88,6 +80,4 @@ public class FilesystemController {
     private static Charset getCharset(String s) {
         return Charset.forName(s);
     }
-
-
 }
